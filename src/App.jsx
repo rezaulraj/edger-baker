@@ -4,19 +4,23 @@ import Layout from "./components/Layout";
 import NotFound from "./components/NotFound";
 import JobPage from "./pages/job/JobPage";
 import "./App.css";
+import HomePage from "./pages/home/HomePage";
+
 function App() {
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<MainHome />} />
-        <Route path="/job-opportunities" element={<Layout />}>
-          <Route path="/job-opportunities" element={<JobPage />} />
-          <Route path="*" element={<NotFound />} />
-        </Route>
+    <Routes>
+      {/* Main routes */}
+      <Route path="/" element={<MainHome />} />
 
+      <Route path="/" element={<Layout />}>
+        <Route path="/job-opportunities" element={<JobPage />} />
+        <Route path="/b2b" element={<HomePage />} />
         <Route path="*" element={<NotFound />} />
-      </Routes>
-    </>
+      </Route>
+
+      {/* Catch-all route */}
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 }
 

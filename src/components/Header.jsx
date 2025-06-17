@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import {
-  Phone,
-  Mail,
-  Clock,
-  Menu,
-  X,
-  ChevronDown,
-} from "lucide-react";
+import { Phone, Mail, Clock, Menu, X, ChevronDown } from "lucide-react";
 import logo from "/logo2.png?url";
 
 const Header = () => {
@@ -16,7 +9,6 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
 
-  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -26,7 +18,7 @@ const Header = () => {
   }, []);
 
   const navItems = [
-    { label: "Home", path: "/" },
+    { label: "Home", path: "/b2b" },
     {
       label: "Services",
       subnav: [
@@ -50,96 +42,115 @@ const Header = () => {
 
   return (
     <header
-      className={`bg-white shadow-sm sticky top-0 z-50 transition-all duration-300 ${
-        isScrolled ? "py-3 opacity-95" : "py-6"
+      className={`fixed w-full top-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-white shadow-lg py-2"
+          : "bg-gradient-to-r from-blue-50 to-white py-4"
       }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row items-center gap-4">
-          {/* Left: Logo */}
+          {/* Logo with animated border */}
           <Link
             to="/"
-            className={`flex-shrink-0 transition-all duration-300 md:px-10 ${
-              isScrolled ? "py-1" : "py-3"
-            }`}
+            className={`flex-shrink-0 transition-all duration-300 ${
+              isScrolled ? "py-1" : "py-2"
+            } relative group`}
           >
             <img
               src={logo}
               alt="Edgar Baker"
-              className="h-12 transform hover:scale-105 transition-transform duration-300"
+              className={`h-12 transition-all duration-300 ${
+                isScrolled ? "" : "group-hover:scale-105"
+              }`}
             />
+            {!isScrolled && (
+              <div className="absolute inset-0 border-2 border-transparent group-hover:border-blue-300 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 -z-10"></div>
+            )}
           </Link>
 
-          {/* Vertical Divider Line */}
-          <div className="w-px h-12 bg-amber-300 hidden lg:block"></div>
+          {/* Vertical Divider with animation */}
+          <div
+            className={`hidden lg:block h-12 w-px bg-gradient-to-b ${
+              isScrolled
+                ? "from-gray-200 to-gray-200"
+                : "from-blue-200 to-blue-100"
+            } mx-4 transition-all duration-300`}
+          ></div>
 
           {/* Right Side Content */}
           <div className="flex flex-col w-full">
-            {/* Top Info Bar - Hidden on Scroll */}
+            {/* Top Info Bar */}
             {!isScrolled && (
-              <div className="hidden lg:flex items-center text-sm pb-2 border-b border-gray-200 text-gray-600 transition-opacity duration-300 ease-in-out">
+              <div className="hidden lg:flex items-center justify-between text-sm pb-3 transition-opacity duration-300 border-b border-gray-200">
                 <div className="flex items-center space-x-6">
-                  <div className="flex items-center">
-                    <Phone className="h-4 w-4 mr-2 text-blue-500" />
+                  <div className="flex items-center group">
+                    <div className="p-2 bg-blue-100 rounded-full group-hover:bg-blue-200 transition-colors duration-300">
+                      <Phone className="h-4 w-4 text-blue-600" />
+                    </div>
                     <a
                       href="tel:+421905321596"
-                      className="hover:text-blue-600 transition-colors"
+                      className="ml-2 font-medium text-gray-700 hover:text-blue-600 transition-colors"
                     >
                       +421 905 321 596
                     </a>
                   </div>
-                  <span className="border-r h-4 mx-3 border-gray-400"></span>
-                  <div className="flex items-center">
-                    <Mail className="h-4 w-4 mr-2 text-blue-500" />
+
+                  <div className="flex items-center group">
+                    <div className="p-2 bg-blue-100 rounded-full group-hover:bg-blue-200 transition-colors duration-300">
+                      <Mail className="h-4 w-4 text-blue-600" />
+                    </div>
                     <a
                       href="mailto:info@edgarbaker.com"
-                      className="hover:text-blue-600 transition-colors"
+                      className="ml-2 font-medium text-gray-700 hover:text-blue-600 transition-colors"
                     >
                       info@edgarbaker.com
                     </a>
                   </div>
                 </div>
-                <span className="border-r h-4 mx-3 border-gray-400"></span>
-                <div className="flex items-center">
-                  <Clock className="h-4 w-4 mr-2 text-blue-500" />
-                  <span>Mon-Fri: 9:00 AM - 5:00 PM</span>
+
+                <div className="flex items-center group">
+                  <div className="p-2 bg-blue-100 rounded-full group-hover:bg-blue-200 transition-colors duration-300">
+                    <Clock className="h-4 w-4 text-blue-600" />
+                  </div>
+                  <span className="ml-2 font-medium text-gray-700">
+                    Mon-Fri: 9:00 AM - 5:00 PM
+                  </span>
                 </div>
               </div>
             )}
 
-            {/* Navigation */}
+            {/* Main Navigation */}
             <nav
               className={`${
-                isScrolled
-                  ? "pt-1 animate-fadeIn"
-                  : "pt-2 animate-fadeIn"
+                isScrolled ? "pt-1" : "pt-3"
               } hidden lg:flex justify-between`}
             >
-              <div className="flex space-x-8">
+              <div className="flex items-center space-x-10 font-lato tracking-wide">
                 {navItems.map((item, index) => (
                   <div key={index} className="relative group">
                     {item.subnav ? (
                       <>
                         <button
-                          className={`flex items-center font-medium uppercase text-sm ${
+                          className={`flex items-center px-3 py-2 rounded-lg font-medium uppercase text-sm tracking-wider ${
                             location.pathname === item.path
-                              ? "text-blue-600 border-b-2 border-blue-600 pb-1"
-                              : "text-gray-700 hover:text-blue-600 hover:border-b-2 hover:border-blue-500 pb-1"
+                              ? "text-white bg-gradient-to-r from-blue-500 to-blue-600 shadow-md"
+                              : "text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200"
                           }`}
                         >
                           {item.label}
                           <ChevronDown className="ml-1 h-4 w-4 transition-transform group-hover:rotate-180" />
                         </button>
-                        <div className="absolute left-0 mt-2 w-56 bg-white rounded-md shadow-lg z-50 border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                        <div className="absolute left-0 mt-1 w-56 bg-white rounded-lg shadow-xl z-50 border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 -translate-y-2">
                           {item.subnav.map((subItem, subIndex) => (
                             <Link
                               key={subIndex}
                               to={subItem.path}
-                              className={`block px-4 py-2 uppercase text-sm ${
+                              className={`block px-4 py-3 uppercase text-sm ${
                                 location.pathname === subItem.path
-                                  ? "bg-blue-50 text-blue-600"
-                                  : "text-gray-700 hover:bg-gray-50 hover:text-blue-600"
-                              }`}
+                                  ? "bg-blue-50 text-blue-600 font-semibold"
+                                  : "text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                              } first:rounded-t-lg last:rounded-b-lg`}
                             >
                               {subItem.label}
                             </Link>
@@ -149,10 +160,10 @@ const Header = () => {
                     ) : (
                       <Link
                         to={item.path}
-                        className={`font-medium uppercase text-sm ${
+                        className={`px-3 py-2 rounded-lg font-medium uppercase text-sm tracking-wider ${
                           location.pathname === item.path
-                            ? "text-blue-600 border-b-2 border-blue-600 pb-1"
-                            : "text-gray-700 hover:text-blue-600 hover:border-b-2 hover:border-blue-500 pb-1"
+                            ? "text-white bg-gradient-to-r from-blue-500 to-blue-600 shadow-md"
+                            : "text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200"
                         }`}
                       >
                         {item.label}
@@ -166,7 +177,11 @@ const Header = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden self-start text-gray-700 hover:text-blue-600 focus:outline-none"
+            className={`lg:hidden self-start p-2 rounded-full transition-all ${
+              isMenuOpen
+                ? "bg-blue-100 text-blue-600"
+                : "text-gray-700 hover:bg-blue-50"
+            }`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -174,19 +189,19 @@ const Header = () => {
           </button>
         </div>
 
-        {/* Mobile Navigation Drawer */}
+        {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden mt-4 pb-4 animate-fadeIn">
+          <div className="lg:hidden mt-4 pb-4 animate-fadeIn bg-white rounded-lg shadow-xl p-4">
             {navItems.map((item, index) => (
-              <div key={index}>
+              <div key={index} className="mb-1 last:mb-0">
                 {item.subnav ? (
                   <>
                     <button
                       onClick={() => toggleSubmenu(index)}
-                      className={`flex justify-between items-center w-full py-2 px-2 font-medium uppercase ${
+                      className={`flex justify-between items-center w-full py-3 px-4 rounded-lg font-medium uppercase ${
                         location.pathname === item.path
-                          ? "text-blue-600"
-                          : "text-gray-700 hover:text-blue-600"
+                          ? "bg-blue-50 text-blue-600"
+                          : "text-gray-700 hover:bg-blue-50"
                       }`}
                     >
                       {item.label}
@@ -203,10 +218,10 @@ const Header = () => {
                             key={subIndex}
                             to={subItem.path}
                             onClick={() => setIsMenuOpen(false)}
-                            className={`block py-2 px-2 uppercase ${
+                            className={`block py-2 px-4 rounded-lg uppercase ${
                               location.pathname === subItem.path
-                                ? "text-blue-600 bg-blue-50 rounded"
-                                : "text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded"
+                                ? "bg-blue-100 text-blue-600 font-semibold"
+                                : "text-gray-700 hover:bg-blue-50"
                             }`}
                           >
                             {subItem.label}
@@ -219,10 +234,10 @@ const Header = () => {
                   <Link
                     to={item.path}
                     onClick={() => setIsMenuOpen(false)}
-                    className={`block py-2 px-2 font-medium uppercase ${
+                    className={`block py-3 px-4 rounded-lg font-medium uppercase ${
                       location.pathname === item.path
-                        ? "text-blue-600"
-                        : "text-gray-700 hover:text-blue-600"
+                        ? "bg-blue-50 text-blue-600"
+                        : "text-gray-700 hover:bg-blue-50"
                     }`}
                   >
                     {item.label}
@@ -230,6 +245,40 @@ const Header = () => {
                 )}
               </div>
             ))}
+
+            {/* Mobile Contact Info */}
+            <div className="mt-6 pt-4 border-t border-gray-100">
+              <div className="flex items-center mb-3">
+                <div className="p-2 bg-blue-100 rounded-full mr-3">
+                  <Phone className="h-4 w-4 text-blue-600" />
+                </div>
+                <a
+                  href="tel:+421905321596"
+                  className="text-gray-700 hover:text-blue-600"
+                >
+                  +421 905 321 596
+                </a>
+              </div>
+              <div className="flex items-center mb-3">
+                <div className="p-2 bg-blue-100 rounded-full mr-3">
+                  <Mail className="h-4 w-4 text-blue-600" />
+                </div>
+                <a
+                  href="mailto:info@edgarbaker.com"
+                  className="text-gray-700 hover:text-blue-600"
+                >
+                  info@edgarbaker.com
+                </a>
+              </div>
+              <div className="flex items-center">
+                <div className="p-2 bg-blue-100 rounded-full mr-3">
+                  <Clock className="h-4 w-4 text-blue-600" />
+                </div>
+                <span className="text-gray-700">
+                  Mon-Fri: 9:00 AM - 5:00 PM
+                </span>
+              </div>
+            </div>
           </div>
         )}
       </div>
