@@ -36,11 +36,7 @@ const MainHome = () => {
       <div className="container mx-auto px-4 py-10">
         {/* Hero Section */}
         <div className="max-w-lg mx-auto pt-20 text-center">
-          <img
-            src={logo}
-            alt="Company Logo"
-            className="w-full h-full max-w-xs mx-auto"
-          />
+          <img src={logo} alt="Company Logo" className="w-full h-full " />
 
           {/* Country flags */}
           <div className="flex justify-center gap-6 mt-8">
@@ -69,7 +65,7 @@ const MainHome = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-14 md:px-10 px-4 pb-20">
           {/* First Card */}
           <Link
-            to={"/job-opportunities"}
+            to={"/jobs"}
             className="group relative rounded-lg shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 min-h-[400px]"
           >
             {/* Background Image with Zoom Effect */}

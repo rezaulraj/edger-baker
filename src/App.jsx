@@ -5,6 +5,7 @@ import NotFound from "./components/NotFound";
 import JobPage from "./pages/job/JobPage";
 import "./App.css";
 import HomePage from "./pages/home/HomePage";
+import JobDescription from "./pages/job/JobDescription";
 
 function App() {
   return (
@@ -13,8 +14,9 @@ function App() {
       <Route path="/" element={<MainHome />} />
 
       <Route path="/" element={<Layout />}>
-        <Route path="/job-opportunities" element={<JobPage />} />
+        <Route path="/jobs" element={<JobPage />} />
         <Route path="/b2b" element={<HomePage />} />
+        <Route path="/jobs/:id" element={<JobDescription />} />
         <Route path="*" element={<NotFound />} />
       </Route>
 

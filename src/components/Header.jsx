@@ -1,13 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Phone, Mail, Clock, Menu, X, ChevronDown } from "lucide-react";
+import ReactCountryFlag from "react-country-flag";
 import logo from "/logo2.png?url";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState(null);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
   const location = useLocation();
+
+  const languageFlags = [
+    { code: "cs", country: "CZ" }, // Czech
+    { code: "de", country: "DE" }, // German
+    { code: "en", country: "GB" }, // English (UK)
+    { code: "hi", country: "IN" }, // Hindi (India)
+    { code: "sl", country: "SI" }, // Slovenian
+    { code: "uk", country: "UA" }, // Ukrainian
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -78,8 +89,20 @@ const Header = () => {
             } mx-4 transition-all duration-300`}
           ></div>
 
+          <button
+            className={`lg:hidden p-2 rounded-full transition-all ${
+              isMenuOpen
+                ? "bg-blue-100 text-blue-600"
+                : "text-gray-700 hover:bg-blue-50"
+            }`}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+
           {/* Right Side Content */}
-          <div className="flex flex-col w-full">
+          <div className="hidden lg:flex flex-col w-full">
             {/* Top Info Bar */}
             {!isScrolled && (
               <div className="hidden lg:flex items-center justify-between text-sm pb-3 transition-opacity duration-300 border-b border-gray-200">
@@ -109,13 +132,65 @@ const Header = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center group">
-                  <div className="p-2 bg-blue-100 rounded-full group-hover:bg-blue-200 transition-colors duration-300">
-                    <Clock className="h-4 w-4 text-blue-600" />
+                <div className="flex items-center space-x-4">
+                  <div className="flex items-center group">
+                    <div className="p-2 bg-blue-100 rounded-full group-hover:bg-blue-200 transition-colors duration-300">
+                      <Clock className="h-4 w-4 text-blue-600" />
+                    </div>
+                    <span className="ml-2 font-medium text-gray-700">
+                      Mon-Fri: 9:00 AM - 5:00 PM
+                    </span>
                   </div>
-                  <span className="ml-2 font-medium text-gray-700">
-                    Mon-Fri: 9:00 AM - 5:00 PM
-                  </span>
+
+                  {/* Language Selector */}
+                  <div className="relative">
+                    <button
+                      onClick={() =>
+                        setIsLanguageDropdownOpen(!isLanguageDropdownOpen)
+                      }
+                      className="flex items-center space-x-1 p-2 rounded-full hover:bg-blue-50 transition-colors"
+                    >
+                      <ReactCountryFlag
+                        countryCode="GB"
+                        svg
+                        style={{
+                          width: "1.2em",
+                          height: "1.2em",
+                        }}
+                        title="English"
+                      />
+                      <ChevronDown className="h-4 w-4 text-gray-600" />
+                    </button>
+
+                    {isLanguageDropdownOpen && (
+                      <div className="absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-xl z-50 border border-gray-100 py-1">
+                        {languageFlags.map((lang, index) => (
+                          <button
+                            key={index}
+                            className="flex items-center w-full px-4 py-2 text-left hover:bg-blue-50 transition-colors"
+                            onClick={() => {
+                              // Handle language change here
+                              setIsLanguageDropdownOpen(false);
+                            }}
+                          >
+                            <ReactCountryFlag
+                              countryCode={lang.country}
+                              svg
+                              style={{
+                                width: "1.2em",
+                                height: "1.2em",
+                                marginRight: "8px",
+                              }}
+                              title={lang.code}
+                            />
+                            <span className="text-sm text-gray-700">
+                              {lang.code.toUpperCase()}
+                            </span>
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             )}
@@ -134,7 +209,7 @@ const Header = () => {
                         <button
                           className={`flex items-center px-3 py-2 rounded-lg font-medium uppercase text-sm tracking-wider ${
                             location.pathname === item.path
-                              ? "text-white bg-gradient-to-r from-blue-500 to-blue-600 shadow-md"
+                              ? "text-blue-600 bg-gradient-to-r from-blue-50 to-blue-100 shadow-md"
                               : "text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200"
                           }`}
                         >
@@ -162,7 +237,7 @@ const Header = () => {
                         to={item.path}
                         className={`px-3 py-2 rounded-lg font-medium uppercase text-sm tracking-wider ${
                           location.pathname === item.path
-                            ? "text-white bg-gradient-to-r from-blue-500 to-blue-600 shadow-md"
+                            ? "text-blue-600 bg-blue-50 shadow-md"
                             : "text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200"
                         }`}
                       >
@@ -172,21 +247,60 @@ const Header = () => {
                   </div>
                 ))}
               </div>
+
+              {/* Language Selector for scrolled state */}
+              {isScrolled && (
+                <div className="relative">
+                  <button
+                    onClick={() =>
+                      setIsLanguageDropdownOpen(!isLanguageDropdownOpen)
+                    }
+                    className="flex items-center space-x-1 p-2 rounded-full hover:bg-blue-50 transition-colors"
+                  >
+                    <ReactCountryFlag
+                      countryCode="GB"
+                      svg
+                      style={{
+                        width: "1.2em",
+                        height: "1.2em",
+                      }}
+                      title="English"
+                    />
+                    <ChevronDown className="h-4 w-4 text-gray-600" />
+                  </button>
+
+                  {isLanguageDropdownOpen && (
+                    <div className="absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-xl z-50 border border-gray-100 py-1">
+                      {languageFlags.map((lang, index) => (
+                        <button
+                          key={index}
+                          className="flex items-center w-full px-4 py-2 text-left hover:bg-blue-50 transition-colors"
+                          onClick={() => {
+                            // Handle language change here
+                            setIsLanguageDropdownOpen(false);
+                          }}
+                        >
+                          <ReactCountryFlag
+                            countryCode={lang.country}
+                            svg
+                            style={{
+                              width: "1.2em",
+                              height: "1.2em",
+                              marginRight: "8px",
+                            }}
+                            title={lang.code}
+                          />
+                          <span className="text-sm text-gray-700">
+                            {lang.code.toUpperCase()}
+                          </span>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
             </nav>
           </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            className={`lg:hidden self-start p-2 rounded-full transition-all ${
-              isMenuOpen
-                ? "bg-blue-100 text-blue-600"
-                : "text-gray-700 hover:bg-blue-50"
-            }`}
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
         </div>
 
         {/* Mobile Navigation */}
@@ -277,6 +391,38 @@ const Header = () => {
                 <span className="text-gray-700">
                   Mon-Fri: 9:00 AM - 5:00 PM
                 </span>
+              </div>
+
+              {/* Mobile Language Selector */}
+              <div className="mt-4 pt-4 border-t border-gray-100">
+                <h4 className="text-sm font-medium text-gray-500 mb-2">
+                  Language
+                </h4>
+                <div className="grid grid-cols-3 gap-2">
+                  {languageFlags.map((lang, index) => (
+                    <button
+                      key={index}
+                      className="flex items-center justify-center p-2 rounded-lg hover:bg-blue-50 transition-colors"
+                      onClick={() => {
+                        // Handle language change here
+                      }}
+                    >
+                      <ReactCountryFlag
+                        countryCode={lang.country}
+                        svg
+                        style={{
+                          width: "1.5em",
+                          height: "1.5em",
+                          marginRight: "4px",
+                        }}
+                        title={lang.code}
+                      />
+                      <span className="text-sm text-gray-700">
+                        {lang.code.toUpperCase()}
+                      </span>
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

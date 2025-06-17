@@ -7,7 +7,7 @@ const Layout = () => {
   return (
     <div className="min-h-screen">
       <Header />
-      <main className="pt-[80px] lg:pt-[120px]">
+      <main className="pt-[140px]">
         <Outlet />
       </main>
       <Footer />
