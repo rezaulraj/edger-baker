@@ -62,11 +62,11 @@ const MainHome = () => {
         </div>
 
         {/* Services Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-14 md:px-10 px-4 pb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-14 md:px-10 pb-20 font-lato">
           {/* First Card */}
           <Link
             to={"/jobs"}
-            className="group relative rounded-lg shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 min-h-[400px]"
+            className="group relative rounded-lg shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 min-h-[300px]"
           >
             {/* Background Image with Zoom Effect */}
             <div
@@ -76,13 +76,13 @@ const MainHome = () => {
               <div className="absolute inset-0 bg-black opacity-70 transition-opacity duration-500 group-hover:opacity-60"></div>
             </div>
 
-            <div className="relative z-10 h-full flex flex-col space-y-20">
-              <div className="p-10 flex-grow text-gray-300 space-y-8">
-                <h2 className="text-3xl font-semibold mb-4 font-lato leading-relaxed transition-transform duration-300 group-hover:translate-x-2">
+            <div className="relative z-10 h-full flex flex-col space-x-6 md:space-y-20">
+              <div className="p-4 md:p-10 flex-grow text-gray-300 space-y-2 md:space-y-8">
+                <h2 className="text-xl md:text-3xl font-semibold mb-4 font-lato leading-relaxed transition-transform duration-300 group-hover:translate-x-2">
                   Are you seeking new career opportunities? Look no further! We
                   have a wide range of job openings across various industries.
                 </h2>
-                <p className="mb-2 font-lato text-lg text-gray-300 leading-relaxed transition-transform duration-300 group-hover:translate-x-2">
+                <p className="mb-2 font-lato text-sm md:text-lg text-gray-300 leading-relaxed transition-transform duration-300 group-hover:translate-x-2">
                   Additionally, we provide Temporary staffing and Outsourcing
                   Services suitable for
                   <br />
@@ -92,11 +92,11 @@ const MainHome = () => {
               </div>
 
               <div className="p-6 flex justify-between items-center">
-                <span className="inline-block px-3 py-1 font-lato text-3xl md:text-4xl text-gray-300 font-medium mb-3 rounded-full transition-transform duration-300 group-hover:translate-x-2">
+                <span className="inline-block px-3 py-1 font-lato text-2xl md:text-4xl text-gray-300 font-medium mb-3 rounded-full transition-transform duration-300 group-hover:translate-x-2">
                   FOR CANDIDATES
                 </span>
                 <div className="transition-transform duration-500 group-hover:translate-x-3">
-                  <LuArrowRightFromLine className="text-5xl text-white transition-transform duration-300 group-hover:translate-x-2" />
+                  <LuArrowRightFromLine className="text-3xl md:text-5xl text-white transition-transform duration-300 group-hover:translate-x-2" />
                 </div>
               </div>
             </div>
@@ -105,7 +105,7 @@ const MainHome = () => {
           {/* Second Card */}
           <Link
             to={"/b2b"}
-            className="group relative rounded-lg shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 min-h-[400px]"
+            className="group relative rounded-lg shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 min-h-[300px]"
           >
             {/* Background Image with Zoom Effect */}
             <div
@@ -115,16 +115,16 @@ const MainHome = () => {
               <div className="absolute inset-0 bg-accent opacity-90 transition-opacity duration-500 group-hover:opacity-80"></div>
             </div>
 
-            <div className="relative z-10 h-full flex flex-col space-y-20">
-              <div className="p-10 flex-grow text-white/95">
-                <h2 className="text-3xl font-semibold mb-4 font-lato leading-relaxed transition-transform duration-300 group-hover:translate-x-2">
+            <div className="relative z-10 h-full flex flex-col space-x-6 md:space-y-20">
+              <div className="p-4 md:p-10 flex-grow text-white/95">
+                <h2 className="text-xl md:text-3xl font-semibold mb-4 font-lato leading-relaxed transition-transform duration-300 group-hover:translate-x-2">
                   We offer comprehensive HR services tailored to the various
                   needs of your company. Our expertise includes Recruitment
                   services, Executive Search, Expert Recruitment, and Project
                   Recruitment, all customized to meet your specific
                   requirements.
                 </h2>
-                <p className="mb-2 font-lato text-lg text-white/95 leading-relaxed transition-transform duration-300 group-hover:translate-x-2">
+                <p className="mb-2 font-lato text-sm md:text-lg text-white/95 leading-relaxed transition-transform duration-300 group-hover:translate-x-2">
                   Our staffing agency will help kickstart your career and find{" "}
                   <br />
                   optimizing your processes, as well as International
@@ -133,11 +133,11 @@ const MainHome = () => {
               </div>
 
               <div className="p-6 flex justify-between items-center">
-                <span className="inline-block px-3 py-1 font-lato text-3xl md:text-4xl text-white/95 font-medium mb-3 rounded-full transition-transform duration-300 group-hover:translate-x-2">
+                <span className="inline-block px-3 py-1 font-lato text-2xl md:text-4xl text-white/95 font-medium mb-3 rounded-full transition-transform duration-300 group-hover:translate-x-2">
                   FOR COMPANIES
                 </span>
                 <div className="transition-transform duration-500 group-hover:translate-x-3">
-                  <LuArrowRightFromLine className="text-5xl text-white/95 transition-transform duration-300 group-hover:translate-x-2" />
+                  <LuArrowRightFromLine className="text-3xl md:text-5xl text-white/95 transition-transform duration-300 group-hover:translate-x-2" />
                 </div>
               </div>
             </div>
