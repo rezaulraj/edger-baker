@@ -390,7 +390,7 @@ const JobDescription = () => {
         <div className="mb-8">
           <Link
             to="/jobs"
-            className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium"
+            className="inline-flex items-center text-secondary hover:text-blue-800 font-medium"
           >
             <ArrowLeft className="h-5 w-5 mr-2" />
             Back to all jobs
@@ -402,7 +402,7 @@ const JobDescription = () => {
           <div className="p-8">
             <div className="flex items-start">
               <div className="p-4 bg-blue-100 rounded-lg mr-6">
-                <Briefcase className="h-8 w-8 text-blue-600" />
+                <Briefcase className="h-8 w-8 text-secondary" />
               </div>
               <div>
                 <h1 className="text-3xl font-bold text-gray-900 mb-2">
@@ -437,7 +437,7 @@ const JobDescription = () => {
                 <div className="flex flex-wrap gap-4">
                   <button
                     onClick={() => setShowApplyForm(true)}
-                    className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors"
+                    className="px-6 py-3 bg-primary hover:bg-accent text-white font-medium rounded-lg transition-colors"
                   >
                     Apply Now
                   </button>
@@ -448,7 +448,7 @@ const JobDescription = () => {
                       onClose={() => setShowApplyForm(false)}
                     />
                   )}
-                  <button className="px-6 py-3 border border-blue-600 text-blue-600 hover:bg-blue-50 font-medium rounded-lg transition-colors">
+                  <button className="px-6 py-3 border border-primary text-primary hover:bg-blue-50 font-medium rounded-lg transition-colors">
                     Save Job
                   </button>
                 </div>
@@ -548,7 +548,7 @@ const JobDescription = () => {
           </p>
           <button
             onClick={() => setShowApplyForm(true)}
-            className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors"
+            className="px-6 py-3 bg-primary hover:bg-accent text-white font-medium rounded-lg transition-colors"
           >
             Apply Now
           </button>

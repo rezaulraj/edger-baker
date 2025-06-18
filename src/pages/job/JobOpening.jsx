@@ -50,11 +50,11 @@ const JobOpening = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-medium text-lg transition-all duration-300 flex items-center justify-center shadow-lg hover:shadow-xl">
+              <button className="bg-primary hover:bg-accent text-white px-8 py-4 rounded-lg font-medium text-lg transition-all duration-300 flex items-center justify-center shadow-lg hover:shadow-xl">
                 Browse Open Positions
                 <ArrowRight className="ml-2 h-5 w-5" />
               </button>
-              <button className="border-2 border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-4 rounded-lg font-medium text-lg transition-all duration-300 flex items-center justify-center">
+              <button className="border-2 border-primary text-accent hover:bg-blue-50 px-8 py-4 rounded-lg font-medium text-lg transition-all duration-300 flex items-center justify-center">
                 Upload Your CV
               </button>
             </div>
