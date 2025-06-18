@@ -140,7 +140,7 @@ const JobList = () => {
         </div>
 
         {/* Job Listings */}
-        <div className="grid grid-cols-1 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {jobsList.map((job) => (
             <div
               key={job.id}
@@ -149,13 +149,13 @@ const JobList = () => {
               <div className="p-6">
                 <div className="flex items-center mb-4">
                   <div className="p-3 bg-blue-100 rounded-lg mr-4">
-                    <Briefcase className="h-6 w-6 text-blue-600" />
+                    <Briefcase className="h-6 w-6 text-secondary" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-gray-900">
+                    <h3 className="text-xl font-bold text-secondary">
                       <Link
                         to={`/jobs/${job.id}`}
-                        className="hover:text-blue-600 transition-colors"
+                        className="hover:text-primary transition-colors"
                       >
                         {job.title}
                       </Link>
